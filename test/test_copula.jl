@@ -3,14 +3,14 @@
 module test_copula
 
 using FactCheck
-using copmod
+using Copmod
 
 facts("testing default constructor") do
 	
 	ndim = 3
 	rho  = 0.5
 
-	c = copmod.Copula(ndim,rho)
+	c = Copmod.Copula(ndim,rho)
 	@fact c.rho => rho
 	@fact c.d   => ndim
 	sig = rho.^abs(linspace(1,ndim,ndim) .- linspace(1,ndim,ndim)')
@@ -18,7 +18,7 @@ facts("testing default constructor") do
 
 	ndim = 2
 	rho  = 0.9
-	c = copmod.Copula(ndim,rho)
+	c = Copmod.Copula(ndim,rho)
 	@fact c.rho => rho
 	@fact c.d   => ndim
 	sig = rho.^abs(linspace(1,ndim,ndim) .- linspace(1,ndim,ndim)')
@@ -32,7 +32,7 @@ facts("testing copula density functions") do
 	ndim = 2
 	rho  = 0.5
 	n = 2 # numpoints
-	cop = copmod.Copula(ndim,rho)
+	cop = Copmod.Copula(ndim,rho)
 	u = linspace(1/n, 1-1/n, n)
 	u2 =[repmat(u,n,1) repmat(u,1,n)'[:] ]
 
@@ -46,22 +46,22 @@ facts("testing copula density functions") do
 
 	Rdcopula = [1.154701*1 for i=1:4]	
 
-	@fact copmod.dnormCopula(u2,cop)[:] => roughly(Rdcopula[:])
+	@fact Copmod.dnormCopula(u2,cop)[:] => roughly(Rdcopula[:])
 
 	# rho = .9
 	rho  = 0.9
-	cop = copmod.Copula(ndim,rho)
+	cop = Copmod.Copula(ndim,rho)
 	Rdcopula = [2.294157*1 for i=1:4]	
-	@fact copmod.dnormCopula(u2,cop)[:] => roughly(Rdcopula[:])
+	@fact Copmod.dnormCopula(u2,cop)[:] => roughly(Rdcopula[:])
 
 	# n = 3. 3 points
 	n = 3
 	rho  = 0.5
-	cop = copmod.Copula(ndim,rho)
+	cop = Copmod.Copula(ndim,rho)
 	u = linspace(1/n, 1-1/n, n)
 	u2 =[repmat(u,n,1) repmat(u,1,n)'[:] ]
 	Rdcopula = [1.2283 1.1195 0.9591 1.1195 1.1547 1.1195 0.9591 1.1195 1.2283]	
-	@fact copmod.dnormCopula(u2,cop)[:] => roughly(Rdcopula[:],atol=0.0001)
+	@fact Copmod.dnormCopula(u2,cop)[:] => roughly(Rdcopula[:],atol=0.0001)
 
 end
 

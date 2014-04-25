@@ -1,6 +1,6 @@
 
 
-module copmod
+module Copmod
 
 using Distributions 
 
