@@ -1,9 +1,8 @@
 
 
-# Julia Copula Package
+# Julia Copulas Package
 
-This package implements the gaussian AR1 copula. So far there are only the density and the random methods. 
+This package implements the [http://en.wikipedia.org/wiki/Copula_(probability_theory)](gaussian AR1 copula). So far there are only the density and the random methods. 
 
-I just started to learn Julia, so need to figure out how to document properly and what is the right package setup.
+This is work in progress and I'll be unlikely to do much work on this anytime soon. Any contributions more than welcome.
 
-ALSO: I kept this very close to the R package copula. Any licensing issues I should keep in mind here?

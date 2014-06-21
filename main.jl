@@ -1,17 +1,17 @@
 
 
 # main programme
-cd("/Users/florianoswald/git/copula.jl")
-include("mods/copula.jl")
+cd("/Users/florianoswald/git/Copulas.jl")
+include("src/copula.jl")
 
-cop = Copmod.Copula(2,0.5)
+cop = Copulas.NormalCopula(2,0.5)
 
-Copmod.rnormCopula(cop,10)
+Copulas.rnormCopula(cop,10)
 
 n =2 
 u = linspace(1/n, 1-1/n, n)
 u2 =[repmat(u,n,1) repmat(u,1,n)'[:] ]
-cpd = reshape(Copmod.dnormCopula(u2,cop),n,n)
+cpd = reshape(Copulas.dnormCopula(u2,cop),n,n)
 
 
 # run tests
