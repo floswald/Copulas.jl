@@ -10,7 +10,7 @@ type NormalCopula
 
 	# initiate copula with AR1 structure
 	function NormalCopula(ndim::Int,rho::Float64)
- 		m = abs(linspace(1.0,ndim,ndim) .- linspace(1.0,ndim,ndim)')
+ 		m = abs.(linspace(1.0,ndim,ndim) .- linspace(1.0,ndim,ndim)')
 		sig = rho.^m
 		return new(ndim,rho,sig)
 	end
