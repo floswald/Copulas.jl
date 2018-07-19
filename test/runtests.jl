@@ -1,32 +1,33 @@
 using Copulas
-using FactCheck
+using Base.Test
 
 
-tolTest = 1.e-2
+tolTest = 0.0001
 print("Testing with tolerance level = $(tolTest)")
 
-facts("testing default constructor") do
+@testset "testing default constructor" begin
 	
 	ndim = 3
 	rho  = 0.5
 
 	c = NormalCopula(ndim,rho)
-	@fact c.rho => rho
-	@fact c.d   => ndim
+	@test c.rho == rho
+	@test c.d   == ndim
 	sig = rho.^abs(linspace(1,ndim,ndim) .- linspace(1,ndim,ndim)')
-	@fact c.sigma => sig
+	@test c.sigma == sig
 
 	ndim = 2
 	rho  = 0.9
 	c = NormalCopula(ndim,rho)
-	@fact c.rho => rho
-	@fact c.d   => ndim
+	@test c.rho == rho
+	@test c.d   == ndim
 	sig = rho.^abs(linspace(1,ndim,ndim) .- linspace(1,ndim,ndim)')
-	@fact c.sigma => sig
+	@test c.sigma == sig
+
 end
 
 
-facts("testing copula density functions") do
+@testset "testing copula density functions" begin
 
 	# rho = .5
 	ndim = 2
@@ -46,13 +47,13 @@ facts("testing copula density functions") do
 
 	Rdcopula = [1.154701*1 for i=1:4]	
 
-	@fact dnormCopula(u2,cop)[:] => roughly(Rdcopula[:])
+	@test dnormCopula(u2,cop)[:] ≈ Rdcopula[:] atol = tolTest
 
 	# rho = .9
 	rho  = 0.9
 	cop = NormalCopula(ndim,rho)
 	Rdcopula = [2.294157*1 for i=1:4]	
-	@fact dnormCopula(u2,cop)[:] => roughly(Rdcopula[:])
+	@test dnormCopula(u2,cop)[:]  ≈ Rdcopula[:] atol = tolTest
 
 	# n = 3. 3 points
 	n = 3
@@ -61,7 +62,7 @@ facts("testing copula density functions") do
 	u = linspace(1/n, 1-1/n, n)
 	u2 =[repmat(u,n,1) repmat(u,1,n)'[:] ]
 	Rdcopula = [1.2283 1.1195 0.9591 1.1195 1.1547 1.1195 0.9591 1.1195 1.2283]	
-	@fact dnormCopula(u2,cop)[:] => roughly(Rdcopula[:],atol=tolTest)
+	@test dnormCopula(u2,cop)[:]  ≈ Rdcopula[:] atol = tolTest
 
 end
 
