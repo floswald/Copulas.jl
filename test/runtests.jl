@@ -2,7 +2,7 @@ using Copulas
 using Base.Test
 
 
-tolTest = 0.0001
+tolTest = 0.001
 print("Testing with tolerance level = $(tolTest)")
 
 @testset "testing default constructor" begin

@@ -51,8 +51,8 @@ function dnormCopula(u::Array{Float64}, c::NormalCopula)
 
 	r = zeros(size(u,1))
 	n = Normal(0,1)
-	x = quantile(n,u)
+	x = quantile.(n,u)
 	mn = MvNormal(c.sigma)
-	r = logpdf(mn,x') .- sum(logpdf(n,x),2)
+	r = logpdf(mn,x') .- sum(logpdf.(n,x),2)
 	exp.(r)
 end
