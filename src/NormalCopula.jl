@@ -14,7 +14,7 @@ type NormalCopula
 		sig = rho.^m
 		return new(ndim,rho,sig)
 	end
-end	  
+end
 
 function show(io::IO, c::NormalCopula)
 	print(io, "normal AR1 copula with $(c.d) dimensions and parameter $(c.rho)")
@@ -51,8 +51,8 @@ function dnormCopula(u::Array{Float64}, c::NormalCopula)
 
 	r = zeros(size(u,1))
 	n = Normal(0,1)
-	x = quantile(n,u)
+	x = quantile.(n,u)
 	mn = MvNormal(c.sigma)
-	r = logpdf(mn,x') .- sum(logpdf(n,x),2) 
-	exp(r)
+	r = logpdf(mn,x') .- sum(logpdf.(n,x),2)
+	exp.(r)
 end
