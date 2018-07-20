@@ -4,7 +4,7 @@ module Copulas
 
 # dependencies
 
-import Distributions: Normal, MvNormal, pdf, logpdf, quantile, rand
+import Distributions: Normal, MvNormal, pdf, logpdf, quantile, rand, cdf
 import Base.show
 
 # exports
