@@ -2,7 +2,7 @@
 language: julia
 os:
   - linux
-# - osx: testing only for linux for the moment. Error when installing brew. 
+# - osx: testing only for linux for the moment. Error when installing brew.
 julia:
   - 0.6
   - nightly
@@ -24,6 +24,7 @@ addons:
     - gfortran
 
 before_script:
+  - julia -e 'Pkg.add("DatagenCopulaBased")' # To test random draws
 script:
   - julia -e 'Pkg.clone(pwd()); Pkg.build("Copulas"); Pkg.test("Copulas"; coverage=true)'
 after_success:

@@ -26,7 +26,7 @@ end
 function rnormCopula( c::NormalCopula, ndraw::Int )
 	n = Normal()
 	mn = MvNormal(c.sigma)
-	pdf(n, rand(mn,ndraw))
+	cdf.(n, rand(mn,ndraw))
 end
 
 
