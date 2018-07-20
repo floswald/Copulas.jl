@@ -20,13 +20,13 @@ Pkg.clone("https://github.com/floswald/Copulas.jl.git")
 
 ## Gaussian AR1 Copula
 We want to draw 10 observations from a 2-dimensional Gaussian copula with
-correlation coefficient $\rho$ equal to 0.5. The first step is to set up the environment
+correlation coefficient \rho equal to 0.5. The first step is to set up the environment
 ```julia
 using Copulas
 srand(123)
 ```
 We create a 2-dimensional Gaussian, first specifying the dimension, then the
-parameter $\rho$
+parameter rho
 ```julia
 cop = NormalCopula(2,0.5)
 ```
